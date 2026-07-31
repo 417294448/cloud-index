@@ -3,18 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloud Index — 云产品深度分析索引</title>
-<meta name="description" content="Cloud Index — 主流云厂商云产品深度分析与横向比对 / Cross-cloud deep analysis & comparison">
+<title>Cloud Product — 云产品深度分析索引</title>
+<meta name="description" content="Cloud Product — 主流云厂商云产品深度分析与横向比对 / Cross-cloud deep analysis & comparison">
+
+<!-- ===== SEO 核心 ===== -->
+<link rel="canonical" href="https://cloudproduct.top/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Cloud Product">
+<meta name="keywords" content="云产品对比,云计算,AWS,Azure,GCP,阿里云,Bedrock,Vertex AI,EMR,HDInsight,Dataproc,cloud comparison,cross-cloud,AI model matrix">
+<meta name="theme-color" content="#f8f9fb">
+
+<!-- ===== 多语言版本（当前仅单页双语切换，声明 alternate 供未来拆分使用） ===== -->
+<link rel="alternate" hreflang="zh-CN" href="https://cloudproduct.top/">
+<link rel="alternate" hreflang="en" href="https://cloudproduct.top/">
+<link rel="alternate" hreflang="x-default" href="https://cloudproduct.top/">
+
+<!-- ===== Open Graph（微信/Facebook/LinkedIn 分享） ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cloud Product">
+<meta property="og:url" content="https://cloudproduct.top/">
+<meta property="og:title" content="Cloud Product — 云产品深度分析索引">
+<meta property="og:description" content="对 AWS、Azure、GCP 与阿里云等主流云厂商的核心云产品进行深度分析与横向比对，为技术选型提供决策依据。">
+<meta property="og:image" content="https://cloudproduct.top/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cloud Product — Cross-Cloud Product Intelligence">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- ===== Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cloud Product — 云产品深度分析索引">
+<meta name="twitter:description" content="对 AWS、Azure、GCP 与阿里云等主流云厂商的核心云产品进行深度分析与横向比对。">
+<meta name="twitter:image" content="https://cloudproduct.top/og-image.svg">
+<meta name="twitter:image:alt" content="Cloud Product — Cross-Cloud Product Intelligence">
+
+<!-- ===== 图标与 PWA ===== -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- ===== 结构化数据 JSON-LD ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cloudproduct.top/#website",
+      "url": "https://cloudproduct.top/",
+      "name": "Cloud Product",
+      "alternateName": "云产品深度分析索引",
+      "description": "对 AWS、Azure、GCP 与阿里云等主流云厂商的核心云产品进行深度分析与横向比对",
+      "inLanguage": ["zh-CN", "en"],
+      "publisher": { "@id": "https://cloudproduct.top/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://cloudproduct.top/#org",
+      "name": "Cloud Product",
+      "url": "https://cloudproduct.top/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cloudproduct.top/og-image.svg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://cloudproduct.top/#webpage",
+      "url": "https://cloudproduct.top/",
+      "name": "Cloud Product — 云产品深度分析索引",
+      "isPartOf": { "@id": "https://cloudproduct.top/#website" },
+      "about": { "@id": "https://cloudproduct.top/#org" },
+      "description": "对 AWS、Azure、GCP 与阿里云等主流云厂商的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。",
+      "inLanguage": "zh-CN",
+      "primaryImageOfPage": "https://cloudproduct.top/og-image.svg"
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://cloudproduct.top/#modules",
+      "name": "分析模块",
+      "itemListOrder": "http://schema.org/ItemListOrderAscending",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebApplication",
+            "name": "云产品横向对标",
+            "url": "https://all.cloudproduct.top/",
+            "applicationCategory": "DeveloperApplication",
+            "description": "跨 AWS、Azure、GCP 与阿里云等主流云厂商的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在各厂商中的对应服务、能力差异与选型建议。"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebApplication",
+            "name": "AI 模型可用性矩阵",
+            "url": "https://llm.cloudproduct.top/",
+            "applicationCategory": "DeveloperApplication",
+            "description": "AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等主流 AI 平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式。"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebApplication",
+            "name": "大数据平台版本情报",
+            "url": "https://emr.cloudproduct.top/",
+            "applicationCategory": "DeveloperApplication",
+            "description": "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   /* ============ 基础与主题变量 ============ */
   :root {
-    --bg: #05060a;
-    --bg-soft: #0a0c14;
-    --panel: rgba(255, 255, 255, 0.03);
-    --panel-border: rgba(255, 255, 255, 0.08);
-    --text: #e8ecf4;
-    --text-dim: #8b93a7;
-    --text-faint: #565e73;
+    --bg: #f8f9fb;
+    --bg-soft: #f0f2f5;
+    --panel: #ffffff;
+    --panel-border: rgba(0, 0, 0, 0.08);
+    --text: #1a1d26;
+    --text-dim: #5a6070;
+    --text-faint: #8a909e;
     --cyan: #22d3ee;
     --violet: #8b5cf6;
     --blue: #3b82f6;
@@ -40,8 +160,8 @@
   .bg-layer { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
   .bg-grid {
     background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      linear-gradient(rgba(15,23,42,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.045) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 75%);
@@ -79,8 +199,8 @@
   header {
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    background: rgba(5, 6, 10, 0.6);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
@@ -111,7 +231,7 @@
     font-weight: 600; color: var(--text-dim); transition: color 0.3s;
     font-family: var(--mono); letter-spacing: 0.5px;
   }
-  .lang-switch span.active { color: var(--cyan); }
+  .lang-switch span.active { color: #0891b2; }
 
   /* ============ Hero 区 ============ */
   .hero { padding: 96px 0 72px; text-align: center; position: relative; }
@@ -161,21 +281,6 @@
   .cloud-item { white-space: nowrap; }
   .cloud-item i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
 
-  /* ============ 数据条 ============ */
-  .stats {
-    display: flex; justify-content: center; gap: 0; margin-top: 60px;
-    border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);
-    opacity: 0; animation: rise 0.9s var(--ease) 0.7s forwards;
-  }
-  .stat { padding: 26px 48px; text-align: center; }
-  .stat + .stat { border-left: 1px solid rgba(255,255,255,0.06); }
-  .stat b {
-    display: block; font-size: 30px; font-weight: 800; letter-spacing: -0.5px;
-    background: var(--grad); -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .stat small { font-size: 12px; color: var(--text-faint); letter-spacing: 1.2px; text-transform: uppercase; font-family: var(--mono); }
-
   /* ============ 模块区 ============ */
   .modules { padding: 88px 0 40px; }
   .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; }
@@ -187,13 +292,13 @@
   .card {
     position: relative; display: block; text-decoration: none; color: inherit;
     border: 1px solid var(--panel-border); border-radius: var(--radius);
-    background: var(--panel); padding: 38px 42px;
+    background: var(--panel); padding: 38px 42px; box-shadow: 0 1px 3px rgba(16,24,40,0.06);
     overflow: hidden; isolation: isolate;
-    transition: border-color 0.4s, transform 0.4s var(--ease), background 0.4s;
+    transition: border-color 0.4s, transform 0.4s var(--ease), background 0.4s, box-shadow 0.4s;
     opacity: 0; transform: translateY(30px);
   }
-  .card.revealed { opacity: 1; transform: translateY(0); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), border-color 0.4s, background 0.4s; }
-  .card:hover { border-color: rgba(34,211,238,0.35); background: rgba(255,255,255,0.045); transform: translateY(-3px); }
+  .card.revealed { opacity: 1; transform: translateY(0); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), border-color 0.4s, background 0.4s, box-shadow 0.4s; }
+  .card:hover { border-color: rgba(59,130,246,0.4); background: #fff; box-shadow: 0 8px 28px rgba(16,24,40,0.1); transform: translateY(-3px); }
   /* 卡片内鼠标光斑 */
   .card::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
@@ -214,25 +319,25 @@
     font-family: var(--mono); font-size: 13px; color: var(--text-faint);
     letter-spacing: 2px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
   }
-  .card-no::after { content: ""; width: 42px; height: 1px; background: rgba(255,255,255,0.12); }
+  .card-no::after { content: ""; width: 42px; height: 1px; background: rgba(0,0,0,0.15); }
   .card h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 12px; transition: color 0.3s; }
   .ext-mark { font-size: 15px; font-weight: 400; color: var(--text-faint); margin-left: 8px; transition: color 0.3s; }
   .card:hover .ext-mark { color: var(--cyan); }
-  .card:hover h3 { color: #fff; }
+  .card:hover h3 { color: #000; }
   .card p { font-size: 14.5px; line-height: 1.75; color: var(--text-dim); max-width: 640px; }
 
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .tag {
     font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.6px;
     padding: 5px 11px; border-radius: 7px; color: var(--text-dim);
-    border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0,0,0,0.1); background: rgba(0,0,0,0.03);
     transition: all 0.3s;
   }
-  .card:hover .tag { border-color: rgba(255,255,255,0.16); color: var(--text); }
+  .card:hover .tag { border-color: rgba(0,0,0,0.2); color: var(--text); }
 
   .arrow {
     flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.12); display: grid; place-items: center;
+    border: 1px solid rgba(0,0,0,0.15); display: grid; place-items: center;
     transition: all 0.4s var(--ease); margin-top: 4px;
   }
   .arrow svg { width: 18px; height: 18px; stroke: var(--text-dim); transition: all 0.4s var(--ease); }
@@ -240,15 +345,15 @@
   .card:hover .arrow svg { stroke: #fff; }
 
   /* 即将上线占位卡 */
-  .card.soon { border-style: dashed; border-color: rgba(255,255,255,0.1); cursor: default; background: transparent; }
-  .card.soon:hover { transform: none; border-color: rgba(255,255,255,0.14); background: transparent; }
+  .card.soon { border-style: dashed; border-color: rgba(0,0,0,0.12); cursor: default; background: transparent; box-shadow: none; }
+  .card.soon:hover { transform: none; border-color: rgba(0,0,0,0.18); background: transparent; box-shadow: none; }
   .card.soon::before, .card.soon::after { display: none; }
   .soon-inner { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0; color: var(--text-faint); }
   .soon-inner svg { width: 18px; height: 18px; }
   .soon-inner span { font-size: 14px; letter-spacing: 0.5px; }
 
   /* ============ 页脚 ============ */
-  footer { margin-top: 90px; border-top: 1px solid rgba(255,255,255,0.05); }
+  footer { margin-top: 90px; border-top: 1px solid rgba(0,0,0,0.06); }
   .foot {
     display: flex; align-items: center; justify-content: space-between;
     padding: 30px 0 36px; font-size: 12.5px; color: var(--text-faint);
@@ -263,13 +368,11 @@
     .card { padding: 28px 24px; }
     .card-top { flex-direction: column; }
     .arrow { display: none; }
-    .stat { padding: 20px 22px; }
-    .stat b { font-size: 23px; }
     .sec-head { flex-direction: column; gap: 6px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .card, .hero-badge, .hero h1, .hero .sub, .cloud-strip, .stats { opacity: 1 !important; transform: none !important; }
+    .card, .hero-badge, .hero h1, .hero .sub, .cloud-strip { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -283,14 +386,14 @@
 <!-- 顶部导航 -->
 <header>
   <div class="wrap nav">
-    <a class="logo" href="./">
+    <a class="logo" href="https://www.cloudproduct.top/" rel="noopener">
       <span class="logo-mark">
         <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
           <path d="M4 17l5-6 4 3 7-9"/><circle cx="4" cy="17" r="1.6" fill="#fff" stroke="none"/>
           <circle cx="20" cy="5" r="1.6" fill="#fff" stroke="none"/>
         </svg>
       </span>
-      <span class="logo-text">Cloud<em>&nbsp;Index</em></span>
+      <span class="logo-text">Cloud<em>&nbsp;Product</em></span>
     </a>
     <div class="lang-switch" id="langSwitch" role="switch" aria-label="Language">
       <div class="thumb"></div>
@@ -300,29 +403,22 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="hero-badge"><span class="dot"></span><span data-i18n="badge">云产品情报 · 持续更新</span></div>
-    <h1 data-i18n-html="title">洞悉多云世界的<br><span class="grad">每一个产品细节</span></h1>
-    <p class="sub" data-i18n="subtitle">对 AWS、Azure、GCP 与阿里云的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。</p>
+    <h1 id="hero-title" data-i18n-html="title">洞悉多云世界的<br><span class="grad">每一个产品细节</span></h1>
+    <p class="sub" data-i18n="subtitle">对 AWS、Azure、GCP 与阿里云等主流云厂商的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。</p>
 
     <!-- 云厂商条：由 JS 根据 PROVIDERS 配置自动渲染 -->
     <div class="cloud-strip" id="cloudStrip"></div>
-
-    <div class="stats">
-      <div class="stat"><b id="statProviders">–</b><small data-i18n="stat1">云厂商</small></div>
-      <div class="stat"><b>200+</b><small data-i18n="stat2">产品对标</small></div>
-      <div class="stat"><b>100+</b><small data-i18n="stat3">模型追踪</small></div>
-      <div class="stat"><b data-i18n="stat4v">实时</b><small data-i18n="stat4">生命周期情报</small></div>
-    </div>
   </section>
 
   <!-- 模块列表 -->
-  <section class="modules" id="modules">
+  <section class="modules" id="modules" aria-labelledby="modules-title">
     <div class="sec-head">
-      <h2 data-i18n="secTitle">分析模块</h2>
+      <h2 id="modules-title" data-i18n="secTitle">分析模块</h2>
       <span class="count" data-i18n="secCount">03 个模块 · 持续扩展</span>
     </div>
 
@@ -334,7 +430,7 @@
           <div>
             <div class="card-no">MODULE&nbsp;01</div>
             <h3 data-i18n="m1t">云产品横向对标</h3>
-            <p data-i18n="m1d">跨 AWS、Azure、GCP 与阿里云的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在四大厂商中的对应服务、能力差异与选型建议。</p>
+            <p data-i18n="m1d">跨 AWS、Azure、GCP 与阿里云等主流云厂商的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在各厂商中的对应服务、能力差异与选型建议。</p>
             <div class="tags">
               <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Alibaba</span>
               <span class="tag" data-i18n="m1tag1">交互式搜索</span><span class="tag" data-i18n="m1tag2">中英双语</span>
@@ -350,7 +446,7 @@
           <div>
             <div class="card-no">MODULE&nbsp;02</div>
             <h3 data-i18n="m2t">AI 模型可用性矩阵</h3>
-            <p data-i18n="m2d">AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。</p>
+            <p data-i18n="m2d">AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等主流 AI 平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。</p>
             <div class="tags">
               <span class="tag">Bedrock</span><span class="tag">Foundry</span><span class="tag">Vertex AI</span>
               <span class="tag" data-i18n="m2tag1">区域可用性</span><span class="tag" data-i18n="m2tag2">生命周期</span><span class="tag" data-i18n="m2tag3">推理模式</span>
@@ -366,10 +462,10 @@
           <div>
             <div class="card-no">MODULE&nbsp;03</div>
             <h3 data-i18n="m3t">大数据平台版本情报</h3>
-            <p data-i18n="m3d">AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的实时版本与生命周期情报 —— 由 Claude Code Skill 驱动，追踪发布节奏、支持窗口与终止支持日期。</p>
+            <p data-i18n="m3d">AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。</p>
             <div class="tags">
               <span class="tag">EMR</span><span class="tag">HDInsight</span><span class="tag">Dataproc</span><span class="tag">Aliyun EMR</span>
-              <span class="tag" data-i18n="m3tag1">实时情报</span><span class="tag" data-i18n="m3tag2">Claude Skill</span>
+              <span class="tag" data-i18n="m3tag1">最新情报</span><span class="tag" data-i18n="m3tag2">生命周期追踪</span>
             </div>
           </div>
           <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -391,8 +487,8 @@
 <!-- 页脚 -->
 <footer>
   <div class="wrap foot">
-    <span>CLOUD&nbsp;INDEX&nbsp;©&nbsp;2026</span>
-    <span><span class="pulse-dot">●</span>&nbsp;<span data-i18n="foot">深度分析 · 横向比对 · 决策支持</span></span>
+    <span data-i18n="copyright">CLOUD&nbsp;PRODUCT&nbsp;©&nbsp;2026</span>
+    <span><span class="pulse-dot">●</span>&nbsp;<span data-i18n="footStatus">持续更新</span></span>
   </div>
 </footer>
 
@@ -415,7 +511,7 @@
 
   /* ============ 云厂商配置 ============
      新增云厂商时，只需在此数组末尾添加一项，
-     顶部厂商条、统计数字与文案中的厂商列表会自动更新。 */
+     顶部厂商条与文案中的厂商列表会自动更新。 */
   const PROVIDERS = [
     { key: "aws",   strip: "AWS",            zh: "AWS",   en: "AWS",           color: "#f59e0b" },
     { key: "azure", strip: "AZURE",          zh: "Azure", en: "Azure",         color: "#38bdf8" },
@@ -441,7 +537,7 @@
       .replace(/\{count\}/g, String(MODULE_COUNT).padStart(2, "0"));
   }
 
-  /* 渲染顶部厂商条 + 统计数字 */
+  /* 渲染顶部厂商条 */
   (function renderProviders() {
     const strip = document.getElementById("cloudStrip");
     PROVIDERS.forEach(p => {
@@ -456,8 +552,6 @@
       item.appendChild(label);
       strip.appendChild(item);
     });
-    const statEl = document.getElementById("statProviders");
-    if (statEl) statEl.textContent = PROVIDERS.length;
   })();
 
   /* ============ 中英文 i18n ============ */
@@ -465,42 +559,42 @@
     zh: {
       badge: "云产品情报 · 持续更新",
       title: "洞悉多云世界的<br><span class=\"grad\">每一个产品细节</span>",
-      subtitle: "对 {providers} 的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。",
-      stat1: "云厂商", stat2: "产品对标", stat3: "模型追踪", stat4: "生命周期情报", stat4v: "实时",
+      subtitle: "对 {providers} 等主流云厂商的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。",
       secTitle: "分析模块", secCount: "{count} 个模块 · 持续扩展",
       m1t: "云产品横向对标",
-      m1d: "跨 AWS、Azure、GCP 与阿里云的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在四大厂商中的对应服务、能力差异与选型建议。",
+      m1d: "跨 AWS、Azure、GCP 与阿里云等主流云厂商的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在各厂商中的对应服务、能力差异与选型建议。",
       m1tag1: "交互式搜索", m1tag2: "中英双语",
       m2t: "AI 模型可用性矩阵",
-      m2d: "AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。",
+      m2d: "AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等主流 AI 平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。",
       m2tag1: "区域可用性", m2tag2: "生命周期", m2tag3: "推理模式",
       m3t: "大数据平台版本情报",
-      m3d: "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的实时版本与生命周期情报 —— 由 Claude Code Skill 驱动，追踪发布节奏、支持窗口与终止支持日期。",
-      m3tag1: "实时情报", m3tag2: "Claude Skill",
+      m3d: "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。",
+      m3tag1: "最新情报", m3tag2: "生命周期追踪",
       soon: "更多云产品深度分析模块，即将上线…",
-      foot: "深度分析 · 横向比对 · 决策支持",
-      docTitle: "Cloud Index — 云产品深度分析索引",
-      docDesc: "跨 {providers} 的云产品深度分析与横向比对 —— Cloud Index"
+      copyright: "CLOUD PRODUCT © 2026",
+      footStatus: "持续更新",
+      docTitle: "Cloud Product — 云产品深度分析索引",
+      docDesc: "跨 {providers} 的云产品深度分析与横向比对 —— Cloud Product"
     },
     en: {
       badge: "CLOUD PRODUCT INTELLIGENCE",
       title: "Every product detail<br><span class=\"grad\">across the multi-cloud world</span>",
-      subtitle: "Deep analysis and side-by-side comparison of core cloud products across {providers} — from product mapping and model availability to version lifecycles, powering your technology decisions.",
-      stat1: "Cloud Providers", stat2: "Product Mappings", stat3: "Models Tracked", stat4: "Lifecycle Intel", stat4v: "Live",
+      subtitle: "Deep analysis and side-by-side comparison of core cloud products across {providers} and more — from product mapping and model availability to version lifecycles, powering your technology decisions.",
       secTitle: "Analysis Modules", secCount: "{count} MODULES · EXPANDING",
       m1t: "Cross-Cloud Product Comparison",
-      m1d: "A panoramic product comparison across AWS, Azure, GCP and Alibaba Cloud — interactive bilingual search to instantly locate the equivalent service, capability gaps and selection guidance for any cloud product.",
+      m1d: "A panoramic product comparison across AWS, Azure, GCP, Alibaba Cloud and more — interactive bilingual search to instantly locate the equivalent service, capability gaps and selection guidance for any cloud product.",
       m1tag1: "Interactive Search", m1tag2: "Bilingual",
       m2t: "AI Model Availability Matrix",
-      m2d: "Foundation model comparison across AWS Bedrock, Azure AI Foundry, GCP Vertex AI and more — model × region availability, lifecycle & retirement status, deployment and inference modes, all on one screen.",
+      m2d: "Foundation model comparison across leading AI platforms including AWS Bedrock, Azure AI Foundry, and GCP Vertex AI — model × region availability, lifecycle & retirement status, deployment and inference modes, all on one screen.",
       m2tag1: "Region Availability", m2tag2: "Lifecycle", m2tag3: "Inference Modes",
       m3t: "Big Data Version Intelligence",
-      m3d: "Real-time version & lifecycle intelligence for AWS EMR, Azure HDInsight, GCP Dataproc and Alibaba Cloud EMR — powered by a Claude Code Skill, tracking release cadence, support windows and end-of-support dates.",
-      m3tag1: "Real-time Intel", m3tag2: "Claude Skill",
+      m3d: "Latest version & lifecycle intelligence for AWS EMR, Azure HDInsight, GCP Dataproc and Alibaba Cloud EMR — tracking release cadence, support windows and end-of-support dates.",
+      m3tag1: "Latest Intel", m3tag2: "Lifecycle Tracking",
       soon: "More deep-dive cloud analysis modules coming soon…",
-      foot: "DEEP ANALYSIS · COMPARISON · DECISIONS",
-      docTitle: "Cloud Index — Cross-Cloud Product Intelligence",
-      docDesc: "Deep analysis & comparison of cloud products across {providers} — Cloud Index"
+      copyright: "CLOUD PRODUCT © 2026",
+      footStatus: "CONTINUOUSLY UPDATED",
+      docTitle: "Cloud Product — Cross-Cloud Product Intelligence",
+      docDesc: "Deep analysis & comparison of cloud products across {providers} — Cloud Product"
     }
   };
 
