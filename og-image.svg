@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f9fb"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="45%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="240" cy="80" r="380" fill="url(#glow1)"/>
+  <circle cx="1080" cy="540" r="360" fill="url(#glow2)"/>
+
+  <!-- 网格 -->
+  <g stroke="#0f172a" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 105h1200M0 210h1200M0 315h1200M0 420h1200M0 525h1200"/>
+    <path d="M150 0v630M300 0v630M450 0v630M600 0v630M750 0v630M900 0v630M1050 0v630"/>
+  </g>
+
+  <!-- Logo 标记 -->
+  <g transform="translate(600,150)">
+    <rect x="-52" y="-52" width="104" height="104" rx="22" fill="url(#brand)"/>
+    <path d="M-26 22l17-21 13 10 24-32" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-2,-4)"/>
+    <circle cx="-26" cy="18" r="5" fill="#fff"/>
+    <circle cx="32" cy="-30" r="5" fill="#fff"/>
+  </g>
+
+  <!-- 主标题 -->
+  <text x="600" y="290" text-anchor="middle" font-family="Inter, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="64" font-weight="800" fill="#1a1d26" letter-spacing="-1">
+    Cloud <tspan fill="url(#brand)">Product</tspan>
+  </text>
+
+  <!-- 副标题 -->
+  <text x="600" y="352" text-anchor="middle" font-family="Inter, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="400" fill="#5a6070">
+    云产品深度分析索引 · Cross-Cloud Product Intelligence
+  </text>
+
+  <!-- 厂商条 -->
+  <g font-family="'JetBrains Mono', Consolas, monospace" font-size="17" font-weight="600" letter-spacing="2" text-anchor="middle">
+    <g transform="translate(600,435)">
+      <rect x="-308" y="-22" width="118" height="44" rx="10" fill="#fff" stroke="#000" stroke-opacity="0.08"/>
+      <circle cx="-278" cy="0" r="6" fill="#f59e0b"/>
+      <text x="-248" y="6" fill="#1a1d26" font-size="15">AWS</text>
+
+      <rect x="-178" y="-22" width="140" height="44" rx="10" fill="#fff" stroke="#000" stroke-opacity="0.08"/>
+      <circle cx="-148" cy="0" r="6" fill="#38bdf8"/>
+      <text x="-118" y="6" fill="#1a1d26" font-size="15">AZURE</text>
+
+      <rect x="-26" y="-22" width="118" height="44" rx="10" fill="#fff" stroke="#000" stroke-opacity="0.08"/>
+      <circle cx="4" cy="0" r="6" fill="#34d399"/>
+      <text x="34" y="6" fill="#1a1d26" font-size="15">GCP</text>
+
+      <rect x="104" y="-22" width="204" height="44" rx="10" fill="#fff" stroke="#000" stroke-opacity="0.08"/>
+      <circle cx="134" cy="0" r="6" fill="#fb7185"/>
+      <text x="164" y="6" fill="#1a1d26" font-size="15">ALIBABA</text>
+    </g>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="600" y="540" text-anchor="middle" font-family="Inter, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#8a909e" letter-spacing="1">
+    产品对标  ·  模型可用性  ·  版本生命周期  ·  决策支持
+  </text>
+
+  <!-- 底部品牌线 -->
+  <rect x="480" y="580" width="240" height="3" rx="1.5" fill="url(#brand)"/>
+</svg>
