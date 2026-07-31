@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Index — 云产品深度分析索引</title>
+<meta name="description" content="Cloud Index — 主流云厂商云产品深度分析与横向比对 / Cross-cloud deep analysis & comparison">
+<style>
+  /* ============ 基础与主题变量 ============ */
+  :root {
+    --bg: #05060a;
+    --bg-soft: #0a0c14;
+    --panel: rgba(255, 255, 255, 0.03);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text: #e8ecf4;
+    --text-dim: #8b93a7;
+    --text-faint: #565e73;
+    --cyan: #22d3ee;
+    --violet: #8b5cf6;
+    --blue: #3b82f6;
+    --grad: linear-gradient(100deg, #22d3ee 0%, #3b82f6 45%, #8b5cf6 100%);
+    --mono: "SFMono-Regular", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+    --sans: "Inter", -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --radius: 18px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  ::selection { background: rgba(34, 211, 238, 0.28); }
+
+  /* ============ 背景层：网格 + 光晕 ============ */
+  .bg-layer { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .bg-glow { z-index: -3; overflow: hidden; }
+  .bg-glow::before, .bg-glow::after {
+    content: ""; position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5;
+  }
+  .bg-glow::before {
+    width: 720px; height: 720px; top: -320px; left: 50%; transform: translateX(-70%);
+    background: radial-gradient(circle, rgba(59,130,246,0.22), transparent 65%);
+    animation: drift 22s ease-in-out infinite alternate;
+  }
+  .bg-glow::after {
+    width: 560px; height: 560px; top: 12%; right: -180px;
+    background: radial-gradient(circle, rgba(139,92,246,0.16), transparent 65%);
+    animation: drift 26s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift {
+    from { transform: translate(-70%, 0) scale(1); }
+    to   { transform: translate(-55%, 60px) scale(1.12); }
+  }
+  /* 鼠标跟随的柔光 */
+  #cursorGlow {
+    position: fixed; width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,211,238,0.055), transparent 60%);
+    pointer-events: none; z-index: -1; transform: translate(-50%, -50%);
+    transition: opacity 0.4s; opacity: 0;
+  }
+
+  /* ============ 布局容器 ============ */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ============ 顶部导航 ============ */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(5, 6, 10, 0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    background: var(--grad); display: grid; place-items: center;
+    box-shadow: 0 0 22px rgba(59,130,246,0.45);
+  }
+  .logo-mark svg { width: 19px; height: 19px; }
+  .logo-text { font-weight: 700; font-size: 17px; letter-spacing: 0.2px; }
+  .logo-text em { font-style: normal; font-weight: 300; color: var(--text-dim); }
+
+  /* 语言切换 */
+  .lang-switch {
+    display: flex; align-items: center; position: relative;
+    border: 1px solid var(--panel-border); border-radius: 999px;
+    background: var(--panel); padding: 3px; cursor: pointer; user-select: none;
+  }
+  .lang-switch .thumb {
+    position: absolute; top: 3px; bottom: 3px; width: calc(50% - 3px); left: 3px;
+    border-radius: 999px; background: rgba(34,211,238,0.14);
+    border: 1px solid rgba(34,211,238,0.35);
+    transition: transform 0.35s var(--ease);
+  }
+  .lang-switch.en .thumb { transform: translateX(100%); }
+  .lang-switch span {
+    position: relative; z-index: 1; padding: 5px 14px; font-size: 12.5px;
+    font-weight: 600; color: var(--text-dim); transition: color 0.3s;
+    font-family: var(--mono); letter-spacing: 0.5px;
+  }
+  .lang-switch span.active { color: var(--cyan); }
+
+  /* ============ Hero 区 ============ */
+  .hero { padding: 96px 0 72px; text-align: center; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid rgba(34,211,238,0.25); background: rgba(34,211,238,0.06);
+    color: var(--cyan); font-size: 12.5px; font-weight: 600; letter-spacing: 1.5px;
+    padding: 7px 16px; border-radius: 999px; font-family: var(--mono);
+    opacity: 0; animation: rise 0.8s var(--ease) 0.1s forwards;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan); animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  .hero h1 {
+    margin-top: 30px; font-size: clamp(40px, 6.4vw, 74px); line-height: 1.08;
+    font-weight: 800; letter-spacing: -1.5px;
+    opacity: 0; animation: rise 0.9s var(--ease) 0.25s forwards;
+  }
+  .hero h1 .grad {
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .hero .sub {
+    margin: 26px auto 0; max-width: 640px; font-size: 17px; line-height: 1.75;
+    color: var(--text-dim); font-weight: 400;
+    opacity: 0; animation: rise 0.9s var(--ease) 0.4s forwards;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 云厂商条 */
+  .cloud-strip {
+    margin-top: 46px; display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 12px 36px; opacity: 0; animation: rise 0.9s var(--ease) 0.55s forwards;
+  }
+  .cloud-item {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 1px;
+    color: var(--text-faint); transition: color 0.3s;
+  }
+  .cloud-item:hover { color: var(--text-dim); }
+  .cloud-item { white-space: nowrap; }
+  .cloud-item i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+
+  /* ============ 数据条 ============ */
+  .stats {
+    display: flex; justify-content: center; gap: 0; margin-top: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);
+    opacity: 0; animation: rise 0.9s var(--ease) 0.7s forwards;
+  }
+  .stat { padding: 26px 48px; text-align: center; }
+  .stat + .stat { border-left: 1px solid rgba(255,255,255,0.06); }
+  .stat b {
+    display: block; font-size: 30px; font-weight: 800; letter-spacing: -0.5px;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat small { font-size: 12px; color: var(--text-faint); letter-spacing: 1.2px; text-transform: uppercase; font-family: var(--mono); }
+
+  /* ============ 模块区 ============ */
+  .modules { padding: 88px 0 40px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; }
+  .sec-head h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .sec-head .count { font-family: var(--mono); font-size: 13px; color: var(--text-faint); letter-spacing: 1px; }
+
+  .card-list { display: flex; flex-direction: column; gap: 22px; }
+
+  .card {
+    position: relative; display: block; text-decoration: none; color: inherit;
+    border: 1px solid var(--panel-border); border-radius: var(--radius);
+    background: var(--panel); padding: 38px 42px;
+    overflow: hidden; isolation: isolate;
+    transition: border-color 0.4s, transform 0.4s var(--ease), background 0.4s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .card.revealed { opacity: 1; transform: translateY(0); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), border-color 0.4s, background 0.4s; }
+  .card:hover { border-color: rgba(34,211,238,0.35); background: rgba(255,255,255,0.045); transform: translateY(-3px); }
+  /* 卡片内鼠标光斑 */
+  .card::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 50%), rgba(34,211,238,0.07), transparent 45%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .card:hover::before { opacity: 1; }
+  /* 左侧渐变描边 */
+  .card::after {
+    content: ""; position: absolute; left: 0; top: 20%; bottom: 20%; width: 3px;
+    background: var(--grad); border-radius: 3px;
+    opacity: 0; transform: scaleY(0.4); transition: all 0.45s var(--ease);
+  }
+  .card:hover::after { opacity: 1; transform: scaleY(1); }
+
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  .card-no {
+    font-family: var(--mono); font-size: 13px; color: var(--text-faint);
+    letter-spacing: 2px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+  }
+  .card-no::after { content: ""; width: 42px; height: 1px; background: rgba(255,255,255,0.12); }
+  .card h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 12px; transition: color 0.3s; }
+  .ext-mark { font-size: 15px; font-weight: 400; color: var(--text-faint); margin-left: 8px; transition: color 0.3s; }
+  .card:hover .ext-mark { color: var(--cyan); }
+  .card:hover h3 { color: #fff; }
+  .card p { font-size: 14.5px; line-height: 1.75; color: var(--text-dim); max-width: 640px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.6px;
+    padding: 5px 11px; border-radius: 7px; color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.02);
+    transition: all 0.3s;
+  }
+  .card:hover .tag { border-color: rgba(255,255,255,0.16); color: var(--text); }
+
+  .arrow {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12); display: grid; place-items: center;
+    transition: all 0.4s var(--ease); margin-top: 4px;
+  }
+  .arrow svg { width: 18px; height: 18px; stroke: var(--text-dim); transition: all 0.4s var(--ease); }
+  .card:hover .arrow { background: var(--grad); border-color: transparent; box-shadow: 0 0 24px rgba(59,130,246,0.5); transform: rotate(-45deg); }
+  .card:hover .arrow svg { stroke: #fff; }
+
+  /* 即将上线占位卡 */
+  .card.soon { border-style: dashed; border-color: rgba(255,255,255,0.1); cursor: default; background: transparent; }
+  .card.soon:hover { transform: none; border-color: rgba(255,255,255,0.14); background: transparent; }
+  .card.soon::before, .card.soon::after { display: none; }
+  .soon-inner { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0; color: var(--text-faint); }
+  .soon-inner svg { width: 18px; height: 18px; }
+  .soon-inner span { font-size: 14px; letter-spacing: 0.5px; }
+
+  /* ============ 页脚 ============ */
+  footer { margin-top: 90px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 30px 0 36px; font-size: 12.5px; color: var(--text-faint);
+    font-family: var(--mono); letter-spacing: 0.5px; flex-wrap: wrap; gap: 12px;
+  }
+  .foot .pulse-dot { color: var(--cyan); }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 720px) {
+    .wrap { padding: 0 20px; }
+    .hero { padding: 64px 0 52px; }
+    .card { padding: 28px 24px; }
+    .card-top { flex-direction: column; }
+    .arrow { display: none; }
+    .stat { padding: 20px 22px; }
+    .stat b { font-size: 23px; }
+    .sec-head { flex-direction: column; gap: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .card, .hero-badge, .hero h1, .hero .sub, .cloud-strip, .stats { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 背景层 -->
+<div class="bg-layer bg-glow"></div>
+<div class="bg-layer bg-grid"></div>
+<div id="cursorGlow"></div>
+
+<!-- 顶部导航 -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="./">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+          <path d="M4 17l5-6 4 3 7-9"/><circle cx="4" cy="17" r="1.6" fill="#fff" stroke="none"/>
+          <circle cx="20" cy="5" r="1.6" fill="#fff" stroke="none"/>
+        </svg>
+      </span>
+      <span class="logo-text">Cloud<em>&nbsp;Index</em></span>
+    </a>
+    <div class="lang-switch" id="langSwitch" role="switch" aria-label="Language">
+      <div class="thumb"></div>
+      <span data-lang="zh" class="active">中文</span>
+      <span data-lang="en">EN</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot"></span><span data-i18n="badge">云产品情报 · 持续更新</span></div>
+    <h1 data-i18n-html="title">洞悉多云世界的<br><span class="grad">每一个产品细节</span></h1>
+    <p class="sub" data-i18n="subtitle">对 AWS、Azure、GCP 与阿里云的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。</p>
+
+    <!-- 云厂商条：由 JS 根据 PROVIDERS 配置自动渲染 -->
+    <div class="cloud-strip" id="cloudStrip"></div>
+
+    <div class="stats">
+      <div class="stat"><b id="statProviders">–</b><small data-i18n="stat1">云厂商</small></div>
+      <div class="stat"><b>200+</b><small data-i18n="stat2">产品对标</small></div>
+      <div class="stat"><b>100+</b><small data-i18n="stat3">模型追踪</small></div>
+      <div class="stat"><b data-i18n="stat4v">实时</b><small data-i18n="stat4">生命周期情报</small></div>
+    </div>
+  </section>
+
+  <!-- 模块列表 -->
+  <section class="modules" id="modules">
+    <div class="sec-head">
+      <h2 data-i18n="secTitle">分析模块</h2>
+      <span class="count" data-i18n="secCount">03 个模块 · 持续扩展</span>
+    </div>
+
+    <div class="card-list">
+
+      <!-- 模块 01：云产品对标 -->
+      <a class="card" href="https://all.cloudproduct.top/" target="_blank" rel="noopener" data-module="product-comparison">
+        <div class="card-top">
+          <div>
+            <div class="card-no">MODULE&nbsp;01</div>
+            <h3 data-i18n="m1t">云产品横向对标</h3>
+            <p data-i18n="m1d">跨 AWS、Azure、GCP 与阿里云的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在四大厂商中的对应服务、能力差异与选型建议。</p>
+            <div class="tags">
+              <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Alibaba</span>
+              <span class="tag" data-i18n="m1tag1">交互式搜索</span><span class="tag" data-i18n="m1tag2">中英双语</span>
+            </div>
+          </div>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 模块 02：AI 模型矩阵 -->
+      <a class="card" href="https://llm.cloudproduct.top/" target="_blank" rel="noopener" data-module="ai-model-matrix">
+        <div class="card-top">
+          <div>
+            <div class="card-no">MODULE&nbsp;02</div>
+            <h3 data-i18n="m2t">AI 模型可用性矩阵</h3>
+            <p data-i18n="m2d">AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。</p>
+            <div class="tags">
+              <span class="tag">Bedrock</span><span class="tag">Foundry</span><span class="tag">Vertex AI</span>
+              <span class="tag" data-i18n="m2tag1">区域可用性</span><span class="tag" data-i18n="m2tag2">生命周期</span><span class="tag" data-i18n="m2tag3">推理模式</span>
+            </div>
+          </div>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 模块 03：大数据生命周期 -->
+      <a class="card" href="https://emr.cloudproduct.top/" target="_blank" rel="noopener" data-module="bigdata-lifecycle">
+        <div class="card-top">
+          <div>
+            <div class="card-no">MODULE&nbsp;03</div>
+            <h3 data-i18n="m3t">大数据平台版本情报</h3>
+            <p data-i18n="m3d">AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的实时版本与生命周期情报 —— 由 Claude Code Skill 驱动，追踪发布节奏、支持窗口与终止支持日期。</p>
+            <div class="tags">
+              <span class="tag">EMR</span><span class="tag">HDInsight</span><span class="tag">Dataproc</span><span class="tag">Aliyun EMR</span>
+              <span class="tag" data-i18n="m3tag1">实时情报</span><span class="tag" data-i18n="m3tag2">Claude Skill</span>
+            </div>
+          </div>
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 即将上线 -->
+      <div class="card soon revealed">
+        <div class="soon-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span data-i18n="soon">更多云产品深度分析模块，即将上线…</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- 页脚 -->
+<footer>
+  <div class="wrap foot">
+    <span>CLOUD&nbsp;INDEX&nbsp;©&nbsp;2026</span>
+    <span><span class="pulse-dot">●</span>&nbsp;<span data-i18n="foot">深度分析 · 横向比对 · 决策支持</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ 外链卡片标记（追加 ↗ 提示） ============ */
+  document.querySelectorAll('.card[href^="http"]').forEach(card => {
+    card.setAttribute("target", "_blank");
+    card.setAttribute("rel", "noopener");
+    const h3 = card.querySelector("h3");
+    if (h3 && !h3.querySelector(".ext-mark")) {
+      const mark = document.createElement("span");
+      mark.className = "ext-mark";
+      mark.textContent = "↗";
+      h3.appendChild(mark);
+    }
+  });
+
+  /* ============ 云厂商配置 ============
+     新增云厂商时，只需在此数组末尾添加一项，
+     顶部厂商条、统计数字与文案中的厂商列表会自动更新。 */
+  const PROVIDERS = [
+    { key: "aws",   strip: "AWS",            zh: "AWS",   en: "AWS",           color: "#f59e0b" },
+    { key: "azure", strip: "AZURE",          zh: "Azure", en: "Azure",         color: "#38bdf8" },
+    { key: "gcp",   strip: "GCP",            zh: "GCP",   en: "GCP",           color: "#34d399" },
+    { key: "ali",   strip: "ALIBABA CLOUD",  zh: "阿里云", en: "Alibaba Cloud", color: "#fb7185" }
+  ];
+
+  /* 文案中的 {providers} 会被替换为按语言拼接的厂商列表 */
+  function joinProviderNames(lang) {
+    const names = PROVIDERS.map(p => p[lang] || p.en);
+    if (names.length <= 1) return names.join("");
+    const last = names[names.length - 1];
+    const head = names.slice(0, -1);
+    return lang === "zh" ? head.join("、") + " 与 " + last : head.join(", ") + " and " + last;
+  }
+
+  /* 模块数量自动从页面中的卡片数得出 */
+  const MODULE_COUNT = document.querySelectorAll(".card:not(.soon)").length;
+
+  function interpolate(text, lang) {
+    return text
+      .replace(/\{providers\}/g, joinProviderNames(lang))
+      .replace(/\{count\}/g, String(MODULE_COUNT).padStart(2, "0"));
+  }
+
+  /* 渲染顶部厂商条 + 统计数字 */
+  (function renderProviders() {
+    const strip = document.getElementById("cloudStrip");
+    PROVIDERS.forEach(p => {
+      const item = document.createElement("span");
+      item.className = "cloud-item";
+      const dot = document.createElement("i");
+      dot.style.background = p.color;
+      dot.style.boxShadow = "0 0 8px " + p.color + "B3";
+      const label = document.createElement("span");
+      label.textContent = p.strip;
+      item.appendChild(dot);
+      item.appendChild(label);
+      strip.appendChild(item);
+    });
+    const statEl = document.getElementById("statProviders");
+    if (statEl) statEl.textContent = PROVIDERS.length;
+  })();
+
+  /* ============ 中英文 i18n ============ */
+  const I18N = {
+    zh: {
+      badge: "云产品情报 · 持续更新",
+      title: "洞悉多云世界的<br><span class=\"grad\">每一个产品细节</span>",
+      subtitle: "对 {providers} 的核心云产品进行深度分析与横向比对 —— 从产品对标、模型可用性到版本生命周期，为技术选型提供决策依据。",
+      stat1: "云厂商", stat2: "产品对标", stat3: "模型追踪", stat4: "生命周期情报", stat4v: "实时",
+      secTitle: "分析模块", secCount: "{count} 个模块 · 持续扩展",
+      m1t: "云产品横向对标",
+      m1d: "跨 AWS、Azure、GCP 与阿里云的产品全景对比 —— 交互式双语搜索，快速定位任意云产品在四大厂商中的对应服务、能力差异与选型建议。",
+      m1tag1: "交互式搜索", m1tag2: "中英双语",
+      m2t: "AI 模型可用性矩阵",
+      m2d: "AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等平台的基础模型对比 —— 模型 × 区域可用性、生命周期与退役状态、部署与推理模式，一屏尽览。",
+      m2tag1: "区域可用性", m2tag2: "生命周期", m2tag3: "推理模式",
+      m3t: "大数据平台版本情报",
+      m3d: "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的实时版本与生命周期情报 —— 由 Claude Code Skill 驱动，追踪发布节奏、支持窗口与终止支持日期。",
+      m3tag1: "实时情报", m3tag2: "Claude Skill",
+      soon: "更多云产品深度分析模块，即将上线…",
+      foot: "深度分析 · 横向比对 · 决策支持",
+      docTitle: "Cloud Index — 云产品深度分析索引",
+      docDesc: "跨 {providers} 的云产品深度分析与横向比对 —— Cloud Index"
+    },
+    en: {
+      badge: "CLOUD PRODUCT INTELLIGENCE",
+      title: "Every product detail<br><span class=\"grad\">across the multi-cloud world</span>",
+      subtitle: "Deep analysis and side-by-side comparison of core cloud products across {providers} — from product mapping and model availability to version lifecycles, powering your technology decisions.",
+      stat1: "Cloud Providers", stat2: "Product Mappings", stat3: "Models Tracked", stat4: "Lifecycle Intel", stat4v: "Live",
+      secTitle: "Analysis Modules", secCount: "{count} MODULES · EXPANDING",
+      m1t: "Cross-Cloud Product Comparison",
+      m1d: "A panoramic product comparison across AWS, Azure, GCP and Alibaba Cloud — interactive bilingual search to instantly locate the equivalent service, capability gaps and selection guidance for any cloud product.",
+      m1tag1: "Interactive Search", m1tag2: "Bilingual",
+      m2t: "AI Model Availability Matrix",
+      m2d: "Foundation model comparison across AWS Bedrock, Azure AI Foundry, GCP Vertex AI and more — model × region availability, lifecycle & retirement status, deployment and inference modes, all on one screen.",
+      m2tag1: "Region Availability", m2tag2: "Lifecycle", m2tag3: "Inference Modes",
+      m3t: "Big Data Version Intelligence",
+      m3d: "Real-time version & lifecycle intelligence for AWS EMR, Azure HDInsight, GCP Dataproc and Alibaba Cloud EMR — powered by a Claude Code Skill, tracking release cadence, support windows and end-of-support dates.",
+      m3tag1: "Real-time Intel", m3tag2: "Claude Skill",
+      soon: "More deep-dive cloud analysis modules coming soon…",
+      foot: "DEEP ANALYSIS · COMPARISON · DECISIONS",
+      docTitle: "Cloud Index — Cross-Cloud Product Intelligence",
+      docDesc: "Deep analysis & comparison of cloud products across {providers} — Cloud Index"
+    }
+  };
+
+  const htmlEl = document.documentElement;
+  const switchEl = document.getElementById("langSwitch");
+
+  function applyLang(lang) {
+    const dict = I18N[lang] || I18N.zh;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key] !== undefined) el.textContent = interpolate(dict[key], lang);
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html");
+      if (dict[key] !== undefined) el.innerHTML = interpolate(dict[key], lang);
+    });
+    document.title = interpolate(dict.docTitle, lang);
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && dict.docDesc) metaDesc.setAttribute("content", interpolate(dict.docDesc, lang));
+    htmlEl.lang = lang === "zh" ? "zh-CN" : "en";
+    switchEl.classList.toggle("en", lang === "en");
+    switchEl.querySelectorAll("span[data-lang]").forEach(s => {
+      s.classList.toggle("active", s.getAttribute("data-lang") === lang);
+    });
+    try { localStorage.setItem("ci-lang", lang); } catch (e) {}
+  }
+
+  let lang = "zh";
+  try {
+    const saved = localStorage.getItem("ci-lang");
+    if (saved === "zh" || saved === "en") {
+      lang = saved;
+    } else {
+      lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+    }
+  } catch (e) {}
+  applyLang(lang);
+
+  switchEl.addEventListener("click", () => {
+    applyLang(switchEl.classList.contains("en") ? "zh" : "en");
+  });
+
+  /* ============ 卡片鼠标光斑跟随 ============ */
+  document.querySelectorAll(".card:not(.soon)").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      card.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  /* ============ 全局鼠标柔光 ============ */
+  const glow = document.getElementById("cursorGlow");
+  let glowShown = false;
+  window.addEventListener("mousemove", e => {
+    if (!glowShown) { glow.style.opacity = "1"; glowShown = true; }
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+  }, { passive: true });
+
+  /* ============ 滚动进场动画 ============ */
+  const cards = document.querySelectorAll(".card:not(.soon)");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          // 按序延迟进场
+          const idx = Array.prototype.indexOf.call(cards, en.target);
+          en.target.style.transitionDelay = (idx * 0.08) + "s";
+          en.target.classList.add("revealed");
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    cards.forEach(c => io.observe(c));
+  } else {
+    cards.forEach(c => c.classList.add("revealed"));
+  }
+})();
+</script>
+</body>
+</html>
