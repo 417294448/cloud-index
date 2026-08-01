@@ -4,13 +4,14 @@
 
 ## 站点定位
 
-Cloud Product 是一个跨云厂商的产品情报索引站，目前包含三个核心分析模块：
+Cloud Product 是一个跨云厂商的产品情报索引站，目前包含四个核心分析模块：
 
 ## 分析模块
 
 - [云产品横向对标](https://all.cloudproduct.top/): 跨 AWS、Azure、GCP 与阿里云等主流云厂商的产品全景对比，交互式双语搜索，快速定位任意云产品在各厂商中的对应服务、能力差异与选型建议。
 - [AI 模型可用性矩阵](https://llm.cloudproduct.top/): AWS Bedrock、Azure AI Foundry、GCP Vertex AI 等主流 AI 平台的基础模型对比 — 模型 × 区域可用性、生命周期与退役状态、部署与推理模式。
 - [大数据平台版本情报](https://emr.cloudproduct.top/): AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 — 追踪发布节奏、支持窗口与终止支持日期。
+- [数据库选型与分析](https://db.cloudproduct.top/): 基于 DB-Engines 权威榜单的数据库生态全景分析 — 覆盖 400+ 数据库系统的排名、模型、许可与维护状态，中英双语搜索筛选，一站式支持技术选型。
 
 ## 覆盖的云厂商
 
@@ -25,4 +26,4 @@ Cloud Product 是一个跨云厂商的产品情报索引站，目前包含三个
 
 ## 适用人群
 
-云计算架构师、技术选型决策者、DevOps 工程师、AI 平台工程师、大数据工程师。
+云计算架构师、技术选型决策者、DevOps 工程师、AI 平台工程师、大数据工程师、数据库工程师。
