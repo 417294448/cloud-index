@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://cloudproduct.top/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://cloudproduct.top/"/>
@@ -14,5 +14,41 @@
       <image:loc>https://cloudproduct.top/og-image.svg</image:loc>
       <image:title>Cloud Product — 云产品深度分析索引</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://all.cloudproduct.top/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://all.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://all.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://all.cloudproduct.top/"/>
+  </url>
+  <url>
+    <loc>https://llm.cloudproduct.top/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://llm.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://llm.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://llm.cloudproduct.top/"/>
+  </url>
+  <url>
+    <loc>https://emr.cloudproduct.top/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://emr.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://emr.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emr.cloudproduct.top/"/>
+  </url>
+  <url>
+    <loc>https://db.cloudproduct.top/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://db.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://db.cloudproduct.top/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://db.cloudproduct.top/"/>
   </url>
 </urlset>
