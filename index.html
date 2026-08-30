@@ -89,7 +89,7 @@
       "@id": "https://cloudproduct.top/#modules",
       "name": "分析模块",
       "itemListOrder": "http://schema.org/ItemListOrderAscending",
-      "numberOfItems": 5,
+      "numberOfItems": 6,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -129,6 +129,17 @@
           "position": 4,
           "item": {
             "@type": "WebApplication",
+            "name": "大模型选型与场景指南",
+            "url": "https://muse.cloudproduct.top/",
+            "applicationCategory": "DeveloperApplication",
+            "description": "数据驱动的中英双语大模型选型指南 —— 覆盖 OpenAI、通义千问、Google Gemini 与智谱 Z.ai 等 340+ 模型，从真实场景出发对比模型能力、上下文窗口与定价。"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebApplication",
             "name": "大数据平台版本情报",
             "url": "https://emr.cloudproduct.top/",
             "applicationCategory": "DeveloperApplication",
@@ -137,7 +148,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 6,
           "item": {
             "@type": "WebApplication",
             "name": "数据库选型与分析",
@@ -498,36 +509,53 @@
         <div class="row-status"><i aria-hidden="true"></i><span data-i18n="statusLive">LIVE</span></div>
       </a>
 
-      <!-- 模块 04：大数据生命周期 -->
-      <a class="row" href="https://emr.cloudproduct.top/" target="_blank" rel="noopener" data-module="bigdata-lifecycle">
+      <!-- 模块 04：大模型选型与场景指南 -->
+      <a class="row" href="https://muse.cloudproduct.top/" target="_blank" rel="noopener" data-module="llm-scenario-guide">
         <div class="row-idx">04</div>
         <div class="row-main">
           <div class="row-head">
-            <h3><span data-i18n="m4t">大数据平台版本情报</span><span class="ext-mark" aria-hidden="true">↗</span></h3>
-            <code class="row-endpoint">emr.cloudproduct.top</code>
+            <h3><span data-i18n="m4t">大模型选型与场景指南</span><span class="ext-mark" aria-hidden="true">↗</span></h3>
+            <code class="row-endpoint">muse.cloudproduct.top</code>
           </div>
-          <p data-i18n="m4d">AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。</p>
+          <p data-i18n="m4d">数据驱动的中英双语大模型选型指南 —— 覆盖 OpenAI、通义千问、Google Gemini 与智谱 Z.ai 等 340+ 模型，从真实场景出发对比模型能力、上下文窗口与定价，帮你为合适的场景选对模型。</p>
           <div class="tags">
-            <span class="tag">EMR</span><span class="tag">HDInsight</span><span class="tag">Dataproc</span><span class="tag">Aliyun EMR</span>
-            <span class="tag" data-i18n="m4tag1">最新情报</span><span class="tag" data-i18n="m4tag2">生命周期追踪</span>
+            <span class="tag">OpenAI</span><span class="tag">Qwen</span><span class="tag">Gemini</span><span class="tag">Z.ai</span>
+            <span class="tag" data-i18n="m4tag1">340+ 模型</span><span class="tag" data-i18n="m4tag2">场景指南</span>
           </div>
         </div>
         <div class="row-status"><i aria-hidden="true"></i><span data-i18n="statusLive">LIVE</span></div>
       </a>
 
-      <!-- 模块 05：数据库选型与分析 -->
-      <a class="row" href="https://db.cloudproduct.top/" target="_blank" rel="noopener" data-module="database-selection">
+      <!-- 模块 05：大数据生命周期 -->
+      <a class="row" href="https://emr.cloudproduct.top/" target="_blank" rel="noopener" data-module="bigdata-lifecycle">
         <div class="row-idx">05</div>
         <div class="row-main">
           <div class="row-head">
-            <h3><span data-i18n="m5t">数据库选型与分析</span><span class="ext-mark" aria-hidden="true">↗</span></h3>
+            <h3><span data-i18n="m5t">大数据平台版本情报</span><span class="ext-mark" aria-hidden="true">↗</span></h3>
+            <code class="row-endpoint">emr.cloudproduct.top</code>
+          </div>
+          <p data-i18n="m5d">AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。</p>
+          <div class="tags">
+            <span class="tag">EMR</span><span class="tag">HDInsight</span><span class="tag">Dataproc</span><span class="tag">Aliyun EMR</span>
+            <span class="tag" data-i18n="m5tag1">最新情报</span><span class="tag" data-i18n="m5tag2">生命周期追踪</span>
+          </div>
+        </div>
+        <div class="row-status"><i aria-hidden="true"></i><span data-i18n="statusLive">LIVE</span></div>
+      </a>
+
+      <!-- 模块 06：数据库选型与分析 -->
+      <a class="row" href="https://db.cloudproduct.top/" target="_blank" rel="noopener" data-module="database-selection">
+        <div class="row-idx">06</div>
+        <div class="row-main">
+          <div class="row-head">
+            <h3><span data-i18n="m6t">数据库选型与分析</span><span class="ext-mark" aria-hidden="true">↗</span></h3>
             <code class="row-endpoint">db.cloudproduct.top</code>
           </div>
-          <p data-i18n="m5d">基于 DB-Engines 权威榜单的数据库生态全景分析 —— 覆盖 400+ 数据库系统的排名、模型、许可与维护状态，中英双语搜索筛选，一站式支持技术选型。</p>
+          <p data-i18n="m6d">基于 DB-Engines 权威榜单的数据库生态全景分析 —— 覆盖 400+ 数据库系统的排名、模型、许可与维护状态，中英双语搜索筛选，一站式支持技术选型。</p>
           <div class="tags">
-            <span class="tag">DB-Engines</span><span class="tag" data-i18n="m5tag1">400+ 数据库</span>
-            <span class="tag" data-i18n="m5tag2">模型分布</span><span class="tag" data-i18n="m5tag3">许可分析</span>
-            <span class="tag" data-i18n="m5tag4">中英双语</span>
+            <span class="tag">DB-Engines</span><span class="tag" data-i18n="m6tag1">400+ 数据库</span>
+            <span class="tag" data-i18n="m6tag2">模型分布</span><span class="tag" data-i18n="m6tag3">许可分析</span>
+            <span class="tag" data-i18n="m6tag4">中英双语</span>
           </div>
         </div>
         <div class="row-status"><i aria-hidden="true"></i><span data-i18n="statusLive">LIVE</span></div>
@@ -632,12 +660,15 @@
       m3t: "AI 模型价格对比",
       m3d: "零依赖单文件静态页，浏览与比较 3000+ 云 AI 模型 —— 覆盖标准/Priority/Batch/Flex 多层定价、上下文窗口、能力、模态与 API 端点，统一折算为每百万 token 美元价格。",
       m3tag1: "多层定价", m3tag2: "上下文窗口", m3tag3: "每百万 token",
-      m4t: "大数据平台版本情报",
-      m4d: "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。",
-      m4tag1: "最新情报", m4tag2: "生命周期追踪",
-      m5t: "数据库选型与分析",
-      m5d: "基于 DB-Engines 权威榜单的数据库生态全景分析 —— 覆盖 400+ 数据库系统的排名、模型、许可与维护状态，中英双语搜索筛选，一站式支持技术选型。",
-      m5tag1: "400+ 数据库", m5tag2: "模型分布", m5tag3: "许可分析", m5tag4: "中英双语",
+      m4t: "大模型选型与场景指南",
+      m4d: "数据驱动的中英双语大模型选型指南 —— 覆盖 OpenAI、通义千问、Google Gemini 与智谱 Z.ai 等 340+ 模型，从真实场景出发对比模型能力、上下文窗口与定价，帮你为合适的场景选对模型。",
+      m4tag1: "340+ 模型", m4tag2: "场景指南",
+      m5t: "大数据平台版本情报",
+      m5d: "AWS EMR、Azure HDInsight、GCP Dataproc 与阿里云 EMR 的最新版本与生命周期情报 —— 追踪发布节奏、支持窗口与终止支持日期。",
+      m5tag1: "最新情报", m5tag2: "生命周期追踪",
+      m6t: "数据库选型与分析",
+      m6d: "基于 DB-Engines 权威榜单的数据库生态全景分析 —— 覆盖 400+ 数据库系统的排名、模型、许可与维护状态，中英双语搜索筛选，一站式支持技术选型。",
+      m6tag1: "400+ 数据库", m6tag2: "模型分布", m6tag3: "许可分析", m6tag4: "中英双语",
       soon: "更多云产品深度分析模块，即将上线…",
       copyright: "CLOUD PRODUCT © 2026",
       footStatus: "持续更新",
@@ -662,12 +693,15 @@
       m3t: "AI Model Pricing Comparison",
       m3d: "A zero-dependency, single-file static page for browsing and comparing 3,000+ cloud AI models across all major providers — pricing (standard / Priority / Batch / Flex tiers), context windows, capabilities, modalities, and API endpoints, normalized to USD per 1M tokens.",
       m3tag1: "Multi-tier Pricing", m3tag2: "Context Windows", m3tag3: "Per 1M Tokens",
-      m4t: "Big Data Version Intelligence",
-      m4d: "Latest version & lifecycle intelligence for AWS EMR, Azure HDInsight, GCP Dataproc and Alibaba Cloud EMR — tracking release cadence, support windows and end-of-support dates.",
-      m4tag1: "Latest Intel", m4tag2: "Lifecycle Tracking",
-      m5t: "Database Selection & Analysis",
-      m5d: "A panoramic analysis of the database ecosystem based on the authoritative DB-Engines ranking — 400+ systems with rank, model, license and maintenance status, bilingual search & filtering, one-stop support for technology selection.",
-      m5tag1: "400+ Databases", m5tag2: "Model Distribution", m5tag3: "License Analysis", m5tag4: "Bilingual",
+      m4t: "LLM Selection & Scenario Guide",
+      m4d: "A data-driven bilingual guide to 340+ LLMs from OpenAI, Alibaba Qwen, Google Gemini and Zhipu Z.ai — starting from real-world scenarios to compare model capabilities, context windows and pricing, helping you pick the right model for the right scenario.",
+      m4tag1: "340+ Models", m4tag2: "Scenario Guide",
+      m5t: "Big Data Version Intelligence",
+      m5d: "Latest version & lifecycle intelligence for AWS EMR, Azure HDInsight, GCP Dataproc and Alibaba Cloud EMR — tracking release cadence, support windows and end-of-support dates.",
+      m5tag1: "Latest Intel", m5tag2: "Lifecycle Tracking",
+      m6t: "Database Selection & Analysis",
+      m6d: "A panoramic analysis of the database ecosystem based on the authoritative DB-Engines ranking — 400+ systems with rank, model, license and maintenance status, bilingual search & filtering, one-stop support for technology selection.",
+      m6tag1: "400+ Databases", m6tag2: "Model Distribution", m6tag3: "License Analysis", m6tag4: "Bilingual",
       soon: "More deep-dive cloud analysis modules coming soon…",
       copyright: "CLOUD PRODUCT © 2026",
       footStatus: "CONTINUOUSLY UPDATED",
